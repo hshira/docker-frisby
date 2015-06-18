@@ -4,7 +4,7 @@ machine:
 dependencies:
   override:
     - docker build -t hshira/frisby:latest .
-    - docker build -t hshira/frisby:$CIRCLE_SHA1 .
+    - docker build -t hshira/frisby:$CIRCLE_BUILD_NUM .
 
 deployment:
   hub:
@@ -12,4 +12,4 @@ deployment:
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push hshira/frisby:latest
-      - docker push hshira/frisby::$CIRCLE_SHA1
+      - docker push hshira/frisby:$CIRCLE_BUILD_NUM
